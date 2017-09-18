@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-<!--     Meta Information -->
+    <!--Meta Information -->
     <title>Tweeter - Home Page</title>
 
     <!-- External CSS -->
@@ -12,13 +12,16 @@
 
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/new-tweet.css" type="text/css" />
     <link rel="stylesheet" href="/styles/nav.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+    <script src="https://use.fontawesome.com/b8994bec03.js"></script>
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </head>
 
   <body>
@@ -31,9 +34,33 @@
 
     <!-- Page-specific (main) content here -->
     <main class="container">
-    <h1>Heading</h1>
-    <p>Fat new smallness few supposing suspicion two. Course sir people worthy horses add entire suffer. How one dull get busy dare far. At principle perfectly by sweetness do. As mr started arrival subject by believe. Strictly numerous outlived kindness whatever on we no on addition. </p>
-    </main>
+      <section id="new" class="new-tweet group">
+        <form class="tweet" action="tweets/" method="post">
+          <h2>Compose Tweet</h2>
+          <textarea name="text" placeholder="What are you humming about?"></textarea>
+          <input type="submit" value="Tweet">
+          <span class="counter">140</span>
+        </form>
+      </section>
+      <div class="tweets new-tweet">
+          <article class="tweet">
+            <header class="group">
+                <img src="/images/avatar.png"></img>
+                <h2>Name</h2>
+                <span id="tag">@name</span>
+              </ul>
+            </header>
+              <p>Some stupid tweet.</p>
+            <footer class="">
+              <p>date</p>
 
+                <a href="#" class="fa fa-flag"></a>
+                <a href="#" class="fa fa-retweet"></a>
+                <a href="#" class="fa fa-heart"></a>
+
+            </footer>
+          </article>
+      </div>
+    </main>
   </body>
 </html>
