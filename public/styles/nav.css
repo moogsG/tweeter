@@ -21,3 +21,19 @@
   padding:0 0 0 10px;
   font-size: 2em;
 }
+
+#nav-bar button{
+  border: 1px solid #000000;
+  border-radius: 5px;
+  background-color: #E7FDFF;
+  color: #009E84;
+  padding: 15px;
+  float: right;
+  font-size: 1.5em;
+  margin: 10px;
+}
+
+#nav-bar button:hover{
+  background-color: #FFFFFF;
+  color: #000000;
+}

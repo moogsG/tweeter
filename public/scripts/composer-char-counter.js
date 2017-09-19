@@ -4,6 +4,8 @@ $(document).ready(function(){
     let counter = $('textarea').parent().find('.counter').text(140 - count);
     if (counter.text() < 0){
       $(counter).addClass('error');
+    }else{
+      $(counter).removeClass('error');
     }
   });
 });

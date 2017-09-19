@@ -10,9 +10,6 @@ clear: both;
 *zoom: 1;
 }
 
-.template{
-  display: none;
-}
 #new .tweet {
 padding: 1em;
 }
@@ -22,7 +19,9 @@ margin: 2em;
 position: relative;
 border-radius: 5px;
 border: 1px solid #cdcdcd;
+display: none;
 }
+
 #new .tweet h2:after {
 content:' ';
 display:block;
