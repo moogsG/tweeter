@@ -6,5 +6,4 @@ $(document).ready(function(){
       $(counter).addClass('error');
     }
   });
-
 });

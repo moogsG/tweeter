@@ -9,6 +9,10 @@ clear: both;
 .group {
 *zoom: 1;
 }
+
+.template{
+  display: none;
+}
 #new .tweet {
 padding: 1em;
 }
@@ -68,7 +72,7 @@ margin-right:10px;
   margin: 0 auto;
   padding-top: 10px;
 }
-.tweets article header #tag{
+.tweets article header #handle{
   float: right;
 }
 
@@ -76,7 +80,7 @@ margin-right:10px;
   padding:10px;
 }
 
-.tweets article footer:before {
+.tweets article footer {
 content:' ';
 display:block;
 border:1px solid #EEEEEE;
