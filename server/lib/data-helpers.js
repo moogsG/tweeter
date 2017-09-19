@@ -10,14 +10,14 @@ module.exports = function makeDataHelpers(db) {
 
     // Saves a tweet to `db`
     saveTweet: function(newTweet, callback) {
-       db.collection('tweets').insertOne(newTweet, function(err, r) {
-          if (err) {
+      db.collection('tweets').insertOne(newTweet, function(err, r) {
+        if (err) {
           console.log('error here')
           return callback(err);
         }
-          callback(null, newTweet);
-    }
-    )},
+        callback(null, newTweet);
+      })
+    },
 
     // Get all tweets in `db`, sorted by newest first
     getTweets: function(callback) {
@@ -26,10 +26,8 @@ module.exports = function makeDataHelpers(db) {
           console.log('error here')
           return callback(err);
         }
-
         callback(null, tweets);
       });
     }
-
   };
 }

@@ -3,7 +3,9 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
 $(document).ready(function() {
+
 
   /*Creates tweet
    **************
@@ -30,14 +32,16 @@ $(document).ready(function() {
       '</article>',
       '</div>'
     ].join("\n"));
+
+
     $tweet.find('#name').text(user.user.name);
     $tweet.find('#avatar').attr("src", user.user.avatars.small);
     $tweet.find('#handle').text(user.user.handle);
     $tweet.find('#message').text(user.content.text);
     $tweet.find('#date').text(user.created_at);
     return $tweet;
-  }
 
+  }
   /**/
   loadTweets(false);
   /*Renders tweets on page
@@ -50,7 +54,7 @@ $(document).ready(function() {
     for (var user in users) {
       //alert(users);
       $newTweet = createTweetElement(users[user]);
-      $('.tweet-content').append($newTweet);
+      $('.tweet-content').prepend($newTweet);
     }
   }
 
