@@ -5,44 +5,65 @@
  */
 
 $(document).ready(function() {
-
+  /*$header = $("<header>")
+          .append($("<img>").addClass("user-avatar").attr("src", tweetData.user.avatars.small))
+          .append($("<h2>").addClass("user-name").text(tweetData.user.name))
+          .append($("<small>").addClass("user-handle").text(tweetData.user.handle))*/
 
   /*Creates tweet
    **************
    *Returns array of HTML
+   *Did a few ways, started with clone and a template
+   *because I am very lazy
    *
+   *Then did array because it was easy
+   *
+   *Then was told to show that I can do it in jquery.
    *
    */
   function createTweetElement(user) {
-    var $tweet = $([
-      '<div class="tweets">',
-      '<article class="tweet">',
-      '<header class="group">',
-      '<img id="avatar" src=""></img>',
-      '<h2 id="name"></h2>',
-      '<span id="handle"></span>',
-      '</header>',
-      '<p id="message"></p>',
-      '<footer>',
-      '<p id="date"></p>',
-      '<a href="#" class="fa fa-flag"></a>',
-      '<a href="#" class="fa fa-retweet"></a>',
-      '<a href="#" class="fa fa-heart"></a>',
-      '</footer>',
-      '</article>',
-      '</div>'
-    ].join("\n"));
+    var $tweet = $('<article>').addClass('tweet')
+    var $header = $('<header>').addClass('group')
+      .append($('<img>').attr('src', user.user.avatars.small))
+      .append($('<h2>').text(user.user.name))
+      .append($('<span>').attr('id', 'handle').text(user.user.handle))
+    var $body = $('<p>').text(user.content.text)
+    var $footer = $('<footer>').append($('<p>').text(user.created_at))
+      .append($('<a>').addClass('fa fa-flag'))
+      .append($('<a>').addClass('fa fa-retweet'))
+      .append($('<a>').addClass('fa fa-heart'))
+
+    $tweet = $tweet.append($header).append($body).append($footer)
+
+    /* var $tweet = $([
+       '<div class="tweets">',
+       '<article class="tweet">',
+       '<header class="group">',
+       '<img id="avatar" src=""></img>',
+       '<h2 id="name"></h2>',
+       '<span id="handle"></span>',
+       '</header>',
+       '<p id="message"></p>',
+       '<footer>',
+       '<p id="date"></p>',
+       '<a href="#" class="fa fa-flag"></a>',
+       '<a href="#" class="fa fa-retweet"></a>',
+       '<a href="#" class="fa fa-heart"></a>',
+       '</footer>',
+       '</article>',
+       '</div>'
+     ].join("\n"));
 
 
-    $tweet.find('#name').text(user.user.name);
-    $tweet.find('#avatar').attr("src", user.user.avatars.small);
-    $tweet.find('#handle').text(user.user.handle);
-    $tweet.find('#message').text(user.content.text);
-    $tweet.find('#date').text(user.created_at);
+     $tweet.find('#name').text(user.user.name);
+     $tweet.find('#avatar').attr("src", user.user.avatars.small);
+     $tweet.find('#handle').text(user.user.handle);
+     $tweet.find('#message').text(user.content.text);
+     $tweet.find('#date').text(user.created_at);*/
     return $tweet;
 
   }
-  /**/
+
   loadTweets(false);
   /*Renders tweets on page
    ****************

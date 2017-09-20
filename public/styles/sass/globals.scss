@@ -1,0 +1,27 @@
+$main: rgb(238, 238, 238);
+$text-colour: rgb(36, 71, 81);
+$link: rgb(57, 204, 183);
+$border: rgb(205, 205, 205);
+
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    color: $text-colour;
+    background-color: $main;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+main {
+    background-color: #ffffff;
+    width: 450px;
+    margin: 0 auto;
+    padding: 80px 0 0 0;
+    height: 100%;
+}

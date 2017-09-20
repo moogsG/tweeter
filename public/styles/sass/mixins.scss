@@ -1,0 +1,17 @@
+@mixin transition($time) {
+    -moz-transition: all $time ease-in;
+    -o-transition: all $time ease-in;
+    -webkit-transition: all $time ease-in;
+    transition: all $time ease-in;
+}
+
+@mixin border {
+    border: 1px solid $border;
+    border-radius: 10px;
+}
+
+@mixin under($colour) {
+    content: ' ';
+    display: block;
+    border-top: 1px solid $colour;
+}

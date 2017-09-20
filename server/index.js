@@ -6,9 +6,14 @@ const PORT          = 8080;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
-
+const sass          = require("node-sass");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+sass.render({
+  file: '/public/styles/sass/stylesheet.scss',
+  outFile: '/to/my/output.css'
+}, function(err, result) { /*...*/ });
+
 
 /*MongoDB
 *********
