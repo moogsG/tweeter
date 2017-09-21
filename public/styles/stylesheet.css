@@ -5,75 +5,105 @@ html {
   box-sizing: inherit; }
 
 body {
+  display: flex;
   margin: 0;
   color: #244751;
   background-color: #eeeeee;
-  font-family: 'Roboto Condensed', sans-serif; }
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1em; }
+  @media (max-width: 767px) {
+    body {
+      font-size: 0.5em; }
+      body p, body h1, body h2 {
+        font-size: 2em; } }
 
 main {
   background-color: #ffffff;
   width: 450px;
-  margin: 0 auto;
+  justify-content: center;
+  margin: auto;
   padding: 80px 0 0 0;
   height: 100%; }
 
+p {
+  font-size: 1rem; }
+
+h1 {
+  font-size: 3rem; }
+
+h2 {
+  font-size: 2rem; }
+
 #nav-bar {
+  background-color: #00A887;
+  color: #e8fdff;
   z-index: 1;
   position: fixed;
   top: 0;
   width: 100%;
   height: 80px;
-  background-color: #00A887;
-  color: #e8fdff;
   padding: 0 2em 0 2em;
-  line-height: 80px; }
+  display: flex;
+  align-items: flex-start; }
+  @media (max-width: 768px) {
+    #nav-bar {
+      justify-content: space-between;
+      align-items: center; } }
   #nav-bar .logo {
-    float: left;
     width: 80px;
-    height: 80px; }
-  #nav-bar .header {
-    float: left;
-    padding: 0 0 0 10px;
-    font-size: 2em; }
-  #nav-bar button {
+    height: 80px;
+    margin-right: 0; }
+  #nav-bar .h2 {
+    font-size: 2em;
+    margin-right: auto;
+    padding-left: 10px; }
+  #nav-bar #addTweet {
     border: 1px solid #000000;
     border-radius: 5px;
     background-color: #E7FDFF;
     color: #009E84;
-    padding: 15px;
-    float: right;
+    padding: 1rem;
     font-size: 1.5em;
-    margin: 10px; }
-    #nav-bar button:hover {
+    margin: auto;
+    margin-right: 0; }
+    #nav-bar #addTweet:hover {
       background-color: #FFFFFF;
       color: #000000; }
 
 #new {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
+  border: 1px solid #cdcdcd;
+  border-radius: 5px;
   margin: 2em;
   position: relative;
-  border-radius: 5px;
-  border: 1px solid #cdcdcd;
   display: none; }
-  #new .tweet {
+  #new form {
     display: flex;
     flex-wrap: wrap;
     padding: 1em; }
-    #new .tweet h2:after {
+    #new form h2:after {
       content: ' ';
       display: block;
       border-top: 1px solid #cdcdcd; }
-    #new .tweet textarea {
+    #new form textarea {
       width: 100%;
       margin: auto; }
-      #new .tweet textarea::-webkit-input-placeholder {
-        /* WebKit browsers */
+      @media (max-width: 768px) {
+        #new form textarea {
+          font-size: 0.9rem; } }
+      #new form textarea::-webkit-input-placeholder {
         padding: 4px; }
-    #new .tweet button {
+    #new form button {
       margin: 10px auto auto 0; }
-    #new .tweet .counter {
+      @media (max-width: 768px) {
+        #new form button {
+          font-size: 1rem; } }
+    #new form .counter {
       margin: 10px 0 auto auto; }
-    #new .tweet .error {
+      @media (max-width: 768px) {
+        #new form .counter {
+          font-size: 0.8rem; } }
+    #new form .error {
       color: red; }
 
 article {
@@ -81,12 +111,24 @@ article {
   position: relative;
   border: 1px solid #cdcdcd;
   border-radius: 10px;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
   opacity: 0.7;
   overflow: hidden; }
   article:hover {
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
     opacity: 1; }
     article:hover footer a {
-      visibility: visible; }
+      -moz-transition: all 0.3s ease-in;
+      -o-transition: all 0.3s ease-in;
+      -webkit-transition: all 0.3s ease-in;
+      transition: all 0.3s ease-in;
+      opacity: 1; }
   article header {
     display: flex;
     align-items: flex-start;
@@ -103,7 +145,8 @@ article {
       margin: 0 0 auto 0;
       padding: 0; }
     article header > #handle {
-      margin-left: auto; }
+      margin-left: auto;
+      font-size: 0.7rem; }
   article p {
     padding: 10px; }
   article footer {
@@ -116,11 +159,22 @@ article {
       font-size: 12px;
       padding: 0 0 0 10px;
       margin-right: auto; }
-    article footer a {
+    article footer .fa-tweet {
+      -moz-transition: all 0.3s ease-in;
+      -o-transition: all 0.3s ease-in;
+      -webkit-transition: all 0.3s ease-in;
+      transition: all 0.3s ease-in;
       padding-right: 10px;
       color: #39ccb7;
       text-decoration: none;
-      visibility: hidden; }
-
-.like {
-  visibility: visible; }
+      opacity: 0; }
+      @media (max-width: 768px) {
+        article footer .fa-tweet {
+          font-size: 1.5rem; } }
+    article footer .like {
+      -moz-transition: all 0.4s ease-in;
+      -o-transition: all 0.4s ease-in;
+      -webkit-transition: all 0.4s ease-in;
+      transition: all 0.4s ease-in;
+      color: #ff0066;
+      opacity: 1; }

@@ -3,12 +3,8 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-
 $(function() {
-  /*$header = $("<header>")
-          .append($("<img>").addClass("user-avatar").attr("src", tweetData.user.avatars.small))
-          .append($("<h2>").addClass("user-name").text(tweetData.user.name))
-          .append($("<small>").addClass("user-handle").text(tweetData.user.handle))*/
+  //$(document).ready(function() {
 
   /*Creates tweet
    **************
@@ -21,64 +17,65 @@ $(function() {
    *Then was told to show that I can do it in jquery.
    *
    */
-  function createTweetElement(user) {
-    var $tweet = $('<article>').attr('data-id', user._id).addClass('tweet')
-    var $header = $('<header>').addClass('group')
+  let createTweetElement = (user) => {
+    let $tweet = $('<article>').attr('data-id', user._id).addClass('tweet')
+    let $header = $('<header>').addClass('group')
       .append($('<img>').attr('src', user.user.avatars.small))
       .append($('<h2>').text(user.user.name))
       .append($('<span>').attr('id', 'handle').text(user.user.handle))
-    var $body = $('<p>').text(user.content.text)
-    var $footer = $('<footer>').append($('<p>').text(user.created_at))
-      .append($('<a>').addClass('fa fa-flag'))
-      .append($('<a>').addClass('fa fa-retweet'))
-      .append($('<a>').attr('id', 'like').attr('data-liked', user.liked).addClass('fa fa-heart'))
+    let $body = $('<p>').text(user.content.text)
+    let $footer = $('<footer>').append($('<p>').text(moment(user.created_at).fromNow()))
+      .append($('<a>').addClass('fa fa-flag fa-tweet'))
+      .append($('<a>').addClass('fa fa-retweet fa-tweet'))
+      .append($('<a>').attr('id', 'like').attr('data-liked', user.liked).addClass('fa fa-heart fa-tweet'))
 
     $tweet = $tweet.append($header).append($body).append($footer)
-    if ($('#like').attr('data-liked') === 'true') {
-      $('#like').addClass('like');
+
+      /*Like Function
+   ***************
+   *On click will add/remove data-liked attr
+   *Returns data, sends to ajax request
+   *
+   */
+
+  $tweet.on('click', '#like', function(event) {
+    event.preventDefault();
+    if ($(this).attr("data-liked") === 'true'){
+        $(this).removeClass('like');
+        $(this).attr("data-liked", 'false');
+      }else{
+        $(this).addClass('like');
+        $(this).attr("data-liked", 'true');
+      };
+
+    const data = {
+      '_id': $tweet.attr('data-id'),
+      'liked': $(this).attr('data-liked')
     }
+    $.ajax({
+      url: 'tweets/',
+      method: 'PUT',
+      data: data
+    });
+  });
 
-    /* var $tweet = $([
-       '<div class="tweets">',
-       '<article class="tweet">',
-       '<header class="group">',
-       '<img id="avatar" src=""></img>',
-       '<h2 id="name"></h2>',
-       '<span id="handle"></span>',
-       '</header>',
-       '<p id="message"></p>',
-       '<footer>',
-       '<p id="date"></p>',
-       '<a href="#" class="fa fa-flag"></a>',
-       '<a href="#" class="fa fa-retweet"></a>',
-       '<a href="#" class="fa fa-heart"></a>',
-       '</footer>',
-       '</article>',
-       '</div>'
-     ].join("\n"));
-
-
-     $tweet.find('#name').text(user.user.name);
-     $tweet.find('#avatar').attr("src", user.user.avatars.small);
-     $tweet.find('#handle').text(user.user.handle);
-     $tweet.find('#message').text(user.content.text);
-     $tweet.find('#date').text(user.created_at);*/
     return $tweet;
-
   }
 
-  loadTweets(false);
   /*Renders tweets on page
    ****************
    * Takes database
    * appends data to page
    */
-  function renderTweets(users) {
-    var $newTweet;
-    for (var user in users) {
+  let renderTweets = (users) => {
+    let $newTweet;
+    for (let user in users) {
       //alert(users);
       $newTweet = createTweetElement(users[user]);
       $('.tweet-content').prepend($newTweet);
+      if ($('#like').attr('data-liked') === 'true') {
+        $('#like').addClass('like');
+      }
     }
   }
 
@@ -89,84 +86,58 @@ $(function() {
    * ||
    * Passes full DB to renderTweets
    */
-  function loadTweets(check) {
-    var url = "/tweets";
-    var feed = $.get(url, function(data) {
+  let loadTweets = (check) => {
+    $.get("/tweets", (data) => {
       if (check) {
-        var lastElement = data[data.length - 1];
+        let lastElement = data[data.length - 1];
         let tweet = createTweetElement(lastElement)
         $('.tweet-content').prepend(tweet.slideDown());
-        return;
       } else {
         renderTweets(data);
       }
     });
   }
+
+  /*Adds tweets on page load
+   **************************
+   *Passes false to load all tweets
+   */
+  loadTweets(false);
   /*AJAX Request for New Tweets
    ****************
    *Returns loadTweets with true
    *
    */
-  $(function() {
-    var result = [];
-    var $button = $('#submit');
-    $button.on('click', function() {
+
+
+    $('#submit').on('click', (event) => {
       event.preventDefault();
       if (!$('textarea').val() || $('textarea').val().length > 140) {
         alert('Write something to tweet!');
-        return;
       } else {
         $.ajax({
           url: 'tweets/',
           method: 'post',
           data: $(".tweet").serialize(),
-          success: function(data) {
+          success: (data) => {
             loadTweets(true);
+            $('textarea').val("");
           }
         });
       }
     });
-  });
 
-  $('div').on('click', '#like', function() {
-    event.preventDefault();
-    $(this).attr("data-liked", function(i, val) {
-      //console.log(this)
-      $(this).addClass('like');
-      if (val === 'true') {
-        $(this).removeClass('like');
-        return 'false';
-      } else if (val === 'false') {
-        $(this).addClass('like');
-        return 'true';
-      }
-    })
 
-    const data = {
-      '_id': $(this).closest("[data-id").attr('data-id'),
-      'liked': $(this).attr('data-liked')
-    }
 
-    $.ajax({
-      url: 'tweets/',
-      method: 'PUT',
-      data: data,
-      success: function(data) {
-      }
-    });
-    // do something with the results of the AJAX call
 
-    //$.put('tweets/', data);
 
-  });
   /*Add Tweet
    ***********
    *Slides down form
    */
-  $('#addTweet').on('click', function() {
+  $('#addTweet').on('click', () => {
     $('#new').slideToggle();
     $('textarea').select()
   })
-
 
 });

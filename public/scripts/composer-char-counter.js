@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
   $('textarea').on('keyup', function(){
     let count = $(this).val().length;
     let counter = $('textarea').parent().find('.counter').text(140 - count);

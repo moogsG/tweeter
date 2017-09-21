@@ -1,12 +1,11 @@
 #new {
-    background-color: #EEEEEE;
+    background-color: rgb(238, 238, 238);
+    border: 1px solid rgb(205, 205, 205);
+    border-radius: 5px;
     margin: 2em;
     position: relative;
-    border-radius: 5px;
-    border: 1px solid rgb(205, 205, 205);
     display: none;
-
-    .tweet {
+    form {
         display: flex;
         flex-wrap: wrap;
         padding: 1em;
@@ -18,19 +17,27 @@
         textarea {
             width: 100%;
             margin: auto;
+            @include media("<=tablet"){
+                font-size: 0.9rem;
+            }
 
             &::-webkit-input-placeholder {
-                /* WebKit browsers */
-                padding: 4px;
+                padding: 4px; //no mozilla support
             }
         }
 
         button {
             margin: 10px auto auto 0;
+            @include media("<=tablet"){
+                font-size: 1rem;
+            }
         }
 
         .counter {
             margin: 10px 0 auto auto;
+            @include media("<=tablet"){
+                font-size: 0.8rem;
+            }
         }
 
         .error {
@@ -40,19 +47,21 @@
 }
 
 article {
+
     margin: 2em;
     position: relative;
-
     @include border;
-
+    @include transition(.2s);
     opacity: 0.7;
     overflow: hidden;
 
     &:hover {
+        @include transition(.2s);
         opacity: 1;
 
         footer a {
-            visibility: visible;
+            @include transition(.3s);
+            opacity: 1;
         }
     }
 
@@ -78,6 +87,7 @@ article {
 
         > #handle {
             margin-left: auto;
+            font-size: 0.7rem;
         }
     }
 
@@ -97,14 +107,23 @@ article {
             margin-right: auto;
         }
 
-        a {
+        .fa-tweet {
+            @include transition(.3s);
             padding-right: 10px;
             color: $link;
             text-decoration: none;
-            visibility: hidden;
+            opacity: 0;
+            @include media("<=tablet"){
+                font-size: 1.5rem;
+            }
+
         }
+        .like{
+            @include transition(.4s);
+            color: rgb(255, 0, 102);
+            opacity: 1
+
     }
 }
-.like{
-    visibility: visible;
+
 }

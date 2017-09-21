@@ -14,19 +14,21 @@
     <script src="https://use.fontawesome.com/b8994bec03.js"></script>
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
+    <script type="text/javascript" src="/scripts/tweets.js"></script>
+    <script type="text/javascript" src="/scripts/moment.js"></script>
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </head>
   <body>
     <!-- Top nav bar (fixed) -->
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
-      <span class="header">Tweeter</span>
-      <button id="addTweet" class="fa fa-edit">Compose</button>
+      <h2>Tweeter</h2>
+      <a id="addTweet"> <span class="fa fa-edit"> </span> Compose</a>
     </nav>
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section id="new" class="new-tweet">
-        <form class="tweet" action="tweets/" method="post">
+        <form action="tweets/" method="post">
           <h2>Compose Tweet</h2>
           <textarea name="text" placeholder="What are you humming about?"></textarea>
           <button id="submit" type="submit" value="Tweet">Tweet</button>
