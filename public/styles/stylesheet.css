@@ -121,3 +121,6 @@ article {
       color: #39ccb7;
       text-decoration: none;
       visibility: hidden; }
+
+.like {
+  visibility: visible; }

@@ -6,12 +6,24 @@ const tweetsRoutes  = express.Router();
 
 module.exports = function(DataHelpers) {
   var moment = require('moment');
+
   tweetsRoutes.get("/", function(req, res) {
     DataHelpers.getTweets((err, tweets) => {
       if (err) {
         res.status(500).json({ error: err.message });
       } else {
         res.json(tweets);
+      }
+    });
+  });
+
+  tweetsRoutes.put("/", function(req, res) {
+        const tweet = req.body;
+    DataHelpers.updateTweet(tweet, (err) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+      } else {
+        res.status(201).send();
       }
     });
   });
