@@ -1,15 +1,12 @@
 # Tweeter Project
 
 Tweeter is a simple, single-page Twitter clone.
+Uses MongoDB for database
+Used include media for media queries
 
-This repository is the starter code for the project: Students will fork and clone this repository, then build upon it to practice their HTML, CSS, JS, jQuery and AJAX front-end skills, and their Node, Express and MongoDB back-end skills.
+This project shows my understanding of Express, node.js, ajax, jquery, MongoDB, and Sass.
 
-## Getting Started
-
-1. Fork this repository, then clone your fork of this repository.
-2. Install dependencies using the `npm install` command.
-3. Start the web server using the `npm run local` command. The app will be served at <http://localhost:8080/>.
-4. Go to <http://localhost:8080/> in your browser.
+Heroku address -- https://calm-atoll-70744.herokuapp.com
 
 ## Dependencies
 
@@ -17,11 +14,8 @@ This repository is the starter code for the project: Students will fork and clon
 - Node 5.10.x or above
 - Dotenv
 
-## Notes
+## Screenshots
 
-Did not use ESJ6 for client side
-Did not add login support
 
-Uses MongoDB for database
-
-Used include media for media queries
+!["Screenshot of main app"](https://github.com/moogsG/tweeter/blob/master/docs/mainApp.png?raw=true)
+!["Screenshot of app in responsive"](https://github.com/moogsG/tweeter/blob/master/docs/mobile.png?raw=true)
