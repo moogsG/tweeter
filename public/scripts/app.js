@@ -31,33 +31,33 @@ $(function() {
 
     $tweet = $tweet.append($header).append($body).append($footer)
 
-      /*Like Function
-   ***************
-   *On click will add/remove data-liked attr
-   *Returns data, sends to ajax request
-   *
-   */
+    /*Like Function
+     ***************
+     *On click will add/remove data-liked attr
+     *Returns data, sends to ajax request
+     *
+     */
 
-  $tweet.on('click', '#like', function(event) {
-    event.preventDefault();
-    if ($(this).attr("data-liked") === 'true'){
+    $tweet.on('click', '#like', function(event) {
+      event.preventDefault();
+      if ($(this).attr("data-liked") === 'true') {
         $(this).removeClass('like');
         $(this).attr("data-liked", 'false');
-      }else{
+      } else {
         $(this).addClass('like');
         $(this).attr("data-liked", 'true');
       };
 
-    const data = {
-      '_id': $tweet.attr('data-id'),
-      'liked': $(this).attr('data-liked')
-    }
-    $.ajax({
-      url: 'tweets/',
-      method: 'PUT',
-      data: data
+      const data = {
+        '_id': $tweet.attr('data-id'),
+        'liked': $(this).attr('data-liked')
+      }
+      $.ajax({
+        url: 'tweets/',
+        method: 'PUT',
+        data: data
+      });
     });
-  });
 
     return $tweet;
   }
@@ -109,24 +109,22 @@ $(function() {
    *
    */
 
-
-    $('#submit').on('click', (event) => {
-      event.preventDefault();
-      if (!$('textarea').val() || $('textarea').val().length > 140) {
-        alert('Write something to tweet!');
-      } else {
-        $.ajax({
-          url: 'tweets/',
-          method: 'post',
-          data: $(".tweet").serialize(),
-          success: (data) => {
-            loadTweets(true);
-            $('textarea').val("");
-          }
-        });
+$('#submit').on('click', (event) => {
+  event.preventDefault();
+  if (!$('textarea').val() || $('textarea').val().length > 140) {
+    alert('Write something to tweet!');
+  } else {
+    $.ajax({
+      url: 'tweets/',
+      method: 'POST',
+      data: $("form").serialize(),
+      success: (data) => {
+        loadTweets(true);
+        $('textarea').val("");
       }
     });
-
+  }
+});
 
 
 
