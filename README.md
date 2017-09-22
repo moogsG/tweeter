@@ -16,3 +16,12 @@ This repository is the starter code for the project: Students will fork and clon
 - Express
 - Node 5.10.x or above
 - Dotenv
+
+## Notes
+
+Did not use ESJ6 for client side
+Did not add login support
+
+Uses MongoDB for database
+
+Used include media for media queries
