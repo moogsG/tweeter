@@ -1,3 +1,8 @@
+$main: rgb(238, 238, 238);
+$text-colour: rgb(36, 71, 81);
+$link: rgb(57, 204, 183);
+$border: rgb(205, 205, 205);
+$breakpoints: (phone: 320px, tablet: 768px, desktop: 1024px);
 @mixin transition($time) {
     -moz-transition: all $time ease-in;
     -o-transition: all $time ease-in;
