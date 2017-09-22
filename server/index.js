@@ -1,8 +1,8 @@
 "use strict";
 
 // Basic express setup:
+const PORT          = 8080;
 require('dotenv').config();
-const PORT          = 3000;
 const express       = require("express");
 const bodyParser    = require("body-parser");
 const app           = express();
@@ -13,13 +13,6 @@ app.use(express.static("public"));
 /*MongoDB
 *********
 */
-
-app.get('/', function(request, response) {
-    var result = 'App is running'
-    response.send(result);
-}).listen(app.get('port'), function() {
-    console.log('App is running, server is listening on port ', app.get('port'));
-});
 
 const {MongoClient} = require("mongodb");
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -46,10 +39,10 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
    });
 
-/*app.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log("Tweeter app listening on port " + PORT);
 
-});*/
+});
 process.on('exit', function(){
   console.log('this runs')
   db.close();
