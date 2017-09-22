@@ -1,3 +1,4 @@
+//New Tweet form
 #new {
     background-color: rgb(238, 238, 238);
     border: 1px solid rgb(205, 205, 205);
@@ -46,8 +47,8 @@
     }
 }
 
+//Tweets
 article {
-
     margin: 2em;
     position: relative;
     @include border;
@@ -90,10 +91,13 @@ article {
             font-size: 0.7rem;
         }
     }
-
-    p {
-        padding: 10px;
+    .body {
+         word-wrap: break-word;
+        p {
+            padding: 10px;
+        }
     }
+
 
     footer {
         @include under($border);

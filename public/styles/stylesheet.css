@@ -163,8 +163,10 @@ article {
     article header > #handle {
       margin-left: auto;
       font-size: 0.7rem; }
-  article p {
-    padding: 10px; }
+  article .body {
+    word-wrap: break-word; }
+    article .body p {
+      padding: 10px; }
   article footer {
     content: ' ';
     display: block;

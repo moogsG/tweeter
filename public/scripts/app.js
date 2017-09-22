@@ -1,3 +1,4 @@
+'use strict'
 $(function() {
 
   /*Creates tweet
@@ -12,14 +13,16 @@ $(function() {
    *
    */
 
-  let createTweetElement = (user) => {
-    let $tweet = $('<article>').attr('data-id', user._id).addClass('tweet')
-    let $header = $('<header>').addClass('group')
+  var createTweetElement = function(user) {
+
+    var $tweet = $('<article>').attr('data-id', user._id).addClass('tweet')
+    var $header = $('<header>').addClass('group')
       .append($('<img>').attr('src', user.user.avatars.small))
       .append($('<h2>').text(user.user.name))
       .append($('<span>').attr('id', 'handle').text(user.user.handle))
-    let $body = $('<p>').text(user.content.text)
-    let $footer = $('<footer>').append($('<p>').text(moment(user.created_at).fromNow()))
+    var $body = $('<div>').addClass('body')
+      .append($('<p>').text(user.content.text))
+    var $footer = $('<footer>').append($('<p>').text(moment(user.created_at).fromNow()))
       .append($('<a>').addClass('fa fa-flag fa-tweet'))
       .append($('<a>').addClass('fa fa-retweet fa-tweet'))
       .append($('<a>').attr('id', 'like').attr('data-liked', user.liked).addClass('fa fa-heart fa-tweet'))
@@ -32,13 +35,13 @@ $(function() {
      *Returns data, sends to ajax request
      *
      */
-    $tweet.on('click', '#like', function(event) {
+    $tweet.on('click', '#like', function(event){
       event.preventDefault();
 
       $(this).data().liked++;
       $(this).addClass('like');
 
-      const data = {
+      var data = {
         '_id': $tweet.attr('data-id'),
         'liked': $(this).data('liked')
       }
@@ -57,9 +60,9 @@ $(function() {
    * Takes database
    * appends data to page
    */
-  let renderTweets = (users) => {
-    let $newTweet;
-    for (let user in users) {
+  var renderTweets = function(users) {
+    var $newTweet;
+    for (var user in users) {
       //alert(users);
       $newTweet = createTweetElement(users[user]);
       $('.tweet-content').prepend($newTweet);
@@ -76,11 +79,11 @@ $(function() {
    * ||
    * Passes full DB to renderTweets
    */
-  let loadTweets = (check) => {
-    $.get("/tweets", (data) => {
+  var loadTweets = function(check) {
+    $.get("/tweets", function(data) {
       if (check) {
-        let lastElement = data[data.length - 1];
-        let tweet = createTweetElement(lastElement)
+        var lastElement = data[data.length - 1];
+        var tweet = createTweetElement(lastElement)
         $('.tweet-content').prepend(tweet.slideDown());
       } else {
         renderTweets(data);
@@ -99,7 +102,7 @@ $(function() {
    *Returns loadTweets with true
    *
    */
-  $('#submit').on('click', (event) => {
+  $('#submit').on('click', function(event) {
     event.preventDefault();
     if (!$('textarea').val()) {
       alert('Write something to tweet!');
@@ -107,7 +110,7 @@ $(function() {
     } else if ($('textarea').val().length > 140) {
       alert('Your tweet is to long!');
     } else {
-      $.post('tweets/', $("form").serialize(), (data) => {
+      $.post('tweets/', $("form").serialize(), function(data) {
         loadTweets(true);
         $('textarea').val("");
       });
@@ -118,7 +121,7 @@ $(function() {
    ***********
    *Slides down form
    */
-  $('#addTweet').on('click', () => {
+  $('#addTweet').on('click', function() {
     $('#new').slideToggle();
     $('textarea').select()
   })
