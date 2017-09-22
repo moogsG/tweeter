@@ -34,6 +34,9 @@ h1 {
 h2 {
   font-size: 2rem; }
 
+a {
+  text-decoration: none; }
+
 #nav-bar {
   background-color: #00A887;
   color: #e8fdff;
@@ -58,15 +61,28 @@ h2 {
     margin-right: auto;
     padding-left: 10px; }
   #nav-bar #addTweet {
-    border: 1px solid #000000;
-    border-radius: 5px;
-    background-color: #E7FDFF;
-    color: #009E84;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #e7fdff;
+    color: #009e84;
     padding: 1rem;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     margin: auto;
     margin-right: 0; }
+    @media (max-width: 768px) {
+      #nav-bar #addTweet .buttonText {
+        display: none; }
+      #nav-bar #addTweet .fa-edit {
+        font-size: 1.5rem; } }
     #nav-bar #addTweet:hover {
+      -moz-transition: all 0.2s ease-in;
+      -o-transition: all 0.2s ease-in;
+      -webkit-transition: all 0.2s ease-in;
+      transition: all 0.2s ease-in;
       background-color: #FFFFFF;
       color: #000000; }
 

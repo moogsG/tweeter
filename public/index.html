@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <!--Meta Information -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Tweeter - Home Page</title>
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
@@ -11,11 +12,12 @@
     <link rel="stylesheet" href="/styles/stylesheet.css" type="text/css" />
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-2.2.3.min.js"></script>
+    <script type="text/javascript" src="/vendor/moment.js"></script>
     <script src="https://use.fontawesome.com/b8994bec03.js"></script>
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
     <script type="text/javascript" src="/scripts/tweets.js"></script>
-    <script type="text/javascript" src="/scripts/moment.js"></script>
+
     <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
   </head>
   <body>
@@ -23,7 +25,7 @@
     <nav id="nav-bar">
       <img class="logo" src="/images/bird.png">
       <h2>Tweeter</h2>
-      <a id="addTweet"> <span class="fa fa-edit"> </span> Compose</a>
+      <a id="addTweet" href="#"> <span class="fa fa-edit"> </span> <span class="buttonText"> Compose </span></a>
     </nav>
     <!-- Page-specific (main) content here -->
     <main class="container">
@@ -36,7 +38,7 @@
         </form>
       </section>
       <div class="tweet-content">
-
+      <!-- Tweets -->
       </div>
     </main>
   </body>

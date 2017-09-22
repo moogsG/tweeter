@@ -27,15 +27,25 @@
     }
 
     #addTweet {
-        border: 1px solid #000000;
-        border-radius: 5px;
-        background-color: #E7FDFF;
-        color: #009E84;
+        @include transition(0.2s);
+        border: 1px solid rgb(0, 0, 0);
+        border-radius: 10px;
+        background-color: rgb(231, 253, 255);
+        color: rgb(0, 158, 132);
         padding: 1rem;
-        font-size: 1.5em;
+        font-size: 1.5rem;
         margin: auto;
         margin-right: 0;
+        @include media("<=tablet"){
+            .buttonText{
+                display: none;
+            }
+            .fa-edit{
+                font-size: 1.5rem;
+            }
+        }
         &:hover {
+            @include transition(0.2s);
             background-color: #FFFFFF;
             color: #000000;
         }

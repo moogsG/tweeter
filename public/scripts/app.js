@@ -1,10 +1,4 @@
-/*
- * Client-side JS logic goes here
- * jQuery is already loaded
- * Reminder: Use (and do all your DOM work in) jQuery's document ready function
- */
 $(function() {
-  //$(document).ready(function() {
 
   /*Creates tweet
    **************
@@ -17,6 +11,7 @@ $(function() {
    *Then was told to show that I can do it in jquery.
    *
    */
+
   let createTweetElement = (user) => {
     let $tweet = $('<article>').attr('data-id', user._id).addClass('tweet')
     let $header = $('<header>').addClass('group')
@@ -31,26 +26,21 @@ $(function() {
 
     $tweet = $tweet.append($header).append($body).append($footer)
 
-    /*Like Function
+    /*Like on click
      ***************
      *On click will add/remove data-liked attr
      *Returns data, sends to ajax request
      *
      */
-
     $tweet.on('click', '#like', function(event) {
       event.preventDefault();
-      if ($(this).attr("data-liked") === 'true') {
-        $(this).removeClass('like');
-        $(this).attr("data-liked", 'false');
-      } else {
-        $(this).addClass('like');
-        $(this).attr("data-liked", 'true');
-      };
+
+      $(this).data().liked++;
+      $(this).addClass('like');
 
       const data = {
         '_id': $tweet.attr('data-id'),
-        'liked': $(this).attr('data-liked')
+        'liked': $(this).data('liked')
       }
       $.ajax({
         url: 'tweets/',
@@ -73,7 +63,7 @@ $(function() {
       //alert(users);
       $newTweet = createTweetElement(users[user]);
       $('.tweet-content').prepend($newTweet);
-      if ($('#like').attr('data-liked') === 'true') {
+      if ($('#like').data('liked') > 0) {
         $('#like').addClass('like');
       }
     }
@@ -103,31 +93,26 @@ $(function() {
    *Passes false to load all tweets
    */
   loadTweets(false);
+
   /*AJAX Request for New Tweets
    ****************
    *Returns loadTweets with true
    *
    */
+  $('#submit').on('click', (event) => {
+    event.preventDefault();
+    if (!$('textarea').val()) {
+      alert('Write something to tweet!');
 
-$('#submit').on('click', (event) => {
-  event.preventDefault();
-  if (!$('textarea').val() || $('textarea').val().length > 140) {
-    alert('Write something to tweet!');
-  } else {
-    $.ajax({
-      url: 'tweets/',
-      method: 'POST',
-      data: $("form").serialize(),
-      success: (data) => {
+    } else if ($('textarea').val().length > 140) {
+      alert('Your tweet is to long!');
+    } else {
+      $.post('tweets/', $("form").serialize(), (data) => {
         loadTweets(true);
         $('textarea').val("");
-      }
-    });
-  }
-});
-
-
-
+      });
+    }
+  });
 
   /*Add Tweet
    ***********
