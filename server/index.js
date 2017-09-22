@@ -9,21 +9,17 @@ const app           = express();
 const sass          = require("node-sass");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-sass.render({
-  file: '/public/styles/sass/stylesheet.scss',
-  outFile: '/to/my/output.css'
-}, function(err, result) { /*...*/ });
-
 
 /*MongoDB
 *********
 */
 
-  app.get("/", function(req, res) {
-    DataHelpers.getTweets((err, tweets) => {
-      res.render('../public/index.html');
-    });
-  });
+app.get('/', function(request, response) {
+    var result = 'App is running'
+    response.send(result);
+}).listen(app.get('port'), function() {
+    console.log('App is running, server is listening on port ', app.get('port'));
+});
 
 const {MongoClient} = require("mongodb");
 const MONGODB_URI = process.env.MONGODB_URI;
@@ -51,7 +47,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
    });
 
 app.listen(PORT, () => {
-  console.log("Example app listening on port " + PORT);
+  console.log("Tweeter app listening on port " + PORT);
 
 });
 process.on('exit', function(){
