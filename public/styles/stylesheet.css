@@ -19,7 +19,8 @@ body {
 
 main {
   background-color: #ffffff;
-  width: 450px;
+  min-width: 5%;
+  max-width: 450px;
   justify-content: center;
   margin: auto;
   padding: 80px 0 0 0;
