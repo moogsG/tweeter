@@ -18,6 +18,13 @@ sass.render({
 /*MongoDB
 *********
 */
+
+  app.get("/", function(req, res) {
+    DataHelpers.getTweets((err, tweets) => {
+      res.render('../public/index.html');
+    });
+  });
+
 const {MongoClient} = require("mongodb");
 const MONGODB_URI = process.env.MONGODB_URI;
 
