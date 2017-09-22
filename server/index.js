@@ -46,10 +46,10 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
 
    });
 
-app.listen(PORT, () => {
+/*app.listen(PORT, () => {
   console.log("Tweeter app listening on port " + PORT);
 
-});
+});*/
 process.on('exit', function(){
   console.log('this runs')
   db.close();
